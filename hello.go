@@ -144,7 +144,7 @@ func main() {
 
 	fmt.Println("map length:", len(m1))
 
-	_, pres := m1["hari"]
+	_, pres := m1["tanvi"]
 
 	fmt.Println("value present:", pres)
 
@@ -173,4 +173,40 @@ func main() {
 	for h, vv := range kvs {
 		fmt.Printf("%s --> %s\t", h, vv)
 	}
+	sum3 := add(1,2)
+	fmt.Println("\nfunction sum:",sum3)
+
+	a1,b1 := multiFunc(22,22)
+
+	fmt.Println("multi function a1:",a1)
+	fmt.Println("multi function b1:",b1)
+
+	_, b2 := multiFunc(1,0)
+
+	fmt.Println("with optional return", b2)
+
+	t1 := variadicFunctions(1,3,4,5)
+	fmt.Println("total:",t1)
+
+	slice10 := []int{10,4,5,6}
+	fmt.Println("total2:",variadicFunctions(slice10...))
+}
+
+func add (a,b int) int {
+	return a + b
+}
+
+// multi return values
+func multiFunc(a,b int) (int, int) {
+	s := a + b
+	d := a - b
+	return s , d
+}
+
+func variadicFunctions(nums...int) int {
+	total := 0;
+	for _,num := range nums {
+		total += num
+	}
+	return total
 }
