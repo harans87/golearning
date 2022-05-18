@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"unicode/utf8"
 )
 
 const s string = "constant"
@@ -190,6 +191,43 @@ func main() {
 
 	slice10 := []int{10,4,5,6}
 	fmt.Println("total2:",variadicFunctions(slice10...))
+
+	closureExample := closures() 
+
+	fmt.Println(closureExample())
+	fmt.Println(closureExample())
+
+	fmt.Println("recursive function:",fact(7))
+
+	var fib func(m int) int 
+
+	fib = func(n int) int {
+		if n < 2 {
+			return n
+		}
+		return fib(n - 1) + fib(n-2)
+	}
+
+	fmt.Println("fib recursive:",fib(7))
+
+	ptr := 1
+	pointerDemo(ptr)
+	fmt.Println("before changing memory address, value is :",ptr)
+	fmt.Println("before changing memory address, address is :",&ptr)
+	ipointer(&ptr)
+	fmt.Println("after changing memory address, value is:",ptr)
+	fmt.Println("after changing memory address, address is:",&ptr)
+
+	const str = "hello"
+	fmt.Println("string:",str);
+	fmt.Println("string length:",len(str))
+
+	//string loop
+	for i :=0;i<len(str);i++ {
+		fmt.Println("string loop:",str[i])
+	}
+	//rune count
+	fmt.Println("Rune count:", utf8.RuneCountInString(str))
 }
 
 func add (a,b int) int {
@@ -209,4 +247,30 @@ func variadicFunctions(nums...int) int {
 		total += num
 	}
 	return total
+}
+
+// closures are anonymous functions
+func closures() func() int {
+	finalInt := 0
+	return func() int {
+		finalInt++;
+		finalInt += 1 
+		return finalInt
+	}
+}
+
+func fact(n int) int {
+	if n == 0 {
+		return 1
+	}
+	return n * fact(n - 1)
+}
+
+//pointers
+func pointerDemo(val int) {
+	val = 0;
+}
+
+func ipointer(ptr *int) {
+	*ptr = 1;
 }
