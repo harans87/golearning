@@ -174,76 +174,76 @@ func main() {
 	for h, vv := range kvs {
 		fmt.Printf("%s --> %s\t", h, vv)
 	}
-	sum3 := add(1,2)
-	fmt.Println("\nfunction sum:",sum3)
+	sum3 := add(1, 2)
+	fmt.Println("\nfunction sum:", sum3)
 
-	a1,b1 := multiFunc(22,22)
+	a1, b1 := multiFunc(22, 22)
 
-	fmt.Println("multi function a1:",a1)
-	fmt.Println("multi function b1:",b1)
+	fmt.Println("multi function a1:", a1)
+	fmt.Println("multi function b1:", b1)
 
-	_, b2 := multiFunc(1,0)
+	_, b2 := multiFunc(1, 0)
 
 	fmt.Println("with optional return", b2)
 
-	t1 := variadicFunctions(1,3,4,5)
-	fmt.Println("total:",t1)
+	t1 := variadicFunctions(1, 3, 4, 5)
+	fmt.Println("total:", t1)
 
-	slice10 := []int{10,4,5,6}
-	fmt.Println("total2:",variadicFunctions(slice10...))
+	slice10 := []int{10, 4, 5, 6}
+	fmt.Println("total2:", variadicFunctions(slice10...))
 
-	closureExample := closures() 
+	closureExample := closures()
 
 	fmt.Println(closureExample())
 	fmt.Println(closureExample())
 
-	fmt.Println("recursive function:",fact(7))
+	fmt.Println("recursive function:", fact(7))
 
-	var fib func(m int) int 
+	var fib func(m int) int
 
 	fib = func(n int) int {
 		if n < 2 {
 			return n
 		}
-		return fib(n - 1) + fib(n-2)
+		return fib(n-1) + fib(n-2)
 	}
 
-	fmt.Println("fib recursive:",fib(7))
+	fmt.Println("fib recursive:", fib(7))
 
-	ptr := 1
+	ptr := 1000
 	pointerDemo(ptr)
-	fmt.Println("before changing memory address, value is :",ptr)
-	fmt.Println("before changing memory address, address is :",&ptr)
+	fmt.Println("before changing memory address, value is :", ptr)
+	fmt.Println("before changing memory address, address is :", &ptr)
 	ipointer(&ptr)
-	fmt.Println("after changing memory address, value is:",ptr)
-	fmt.Println("after changing memory address, address is:",&ptr)
+	fmt.Println("after changing memory address, value is:", ptr)
+	fmt.Println("after changing memory address, address is:", &ptr)
 
 	const str = "hello"
-	fmt.Println("string:",str);
-	fmt.Println("string length:",len(str))
+	fmt.Println("string:", str)
+	fmt.Println("string length:", len(str))
 
 	//string loop
-	for i :=0;i<len(str);i++ {
-		fmt.Println("string loop:",str[i])
+	for i := 0; i < len(str); i++ {
+		fmt.Println("string loop:", str[i])
 	}
 	//rune count
 	fmt.Println("Rune count:", utf8.RuneCountInString(str))
 }
 
-func add (a,b int) int {
+func add(a, b int) int {
 	return a + b
 }
 
 // multi return values
-func multiFunc(a,b int) (int, int) {
+func multiFunc(a, b int) (int, int) {
 	s := a + b
 	d := a - b
-	return s , d
+	return s, d
 }
 
-func variadicFunctions(nums...int) int {
-	total := 0;
-	for _,num := range nums {
+func variadicFunctions(nums ...int) int {
+	total := 0
+	for _, num := range nums {
 		total += num
 	}
 	return total
@@ -253,8 +253,8 @@ func variadicFunctions(nums...int) int {
 func closures() func() int {
 	finalInt := 0
 	return func() int {
-		finalInt++;
-		finalInt += 1 
+		finalInt++
+		finalInt += 1
 		return finalInt
 	}
 }
@@ -263,14 +263,14 @@ func fact(n int) int {
 	if n == 0 {
 		return 1
 	}
-	return n * fact(n - 1)
+	return n * fact(n-1)
 }
 
 //pointers
 func pointerDemo(val int) {
-	val = 0;
+	val = 0
 }
 
 func ipointer(ptr *int) {
-	*ptr = 1;
+	*ptr = 1
 }
